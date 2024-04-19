@@ -58,6 +58,36 @@ def olcso(iz,ar):
             mini = i
     return iz[i]
      
+def atlag_rating(velemeny):
+    s = 0
+    n = len(velemeny)
+    for i in range(n):
+        s += velemeny[i]
+    atlag = s / n
+    return atlag
+    
+def novekvo(ar,iz):
+    n = len(ar)
+    for i in range(n):
+        for j in range(n-1-i):
+            if ar[j] > ar[j+1]:
+                ar[j], ar[j+1] = ar[j+1], ar[j]
+    return ar
+
+def intolcso(iz,ar):
+    n = len(ar)
+    mini = 0
+    mine = 0 
+    for i in range(1,n):
+        if ar[i] < ar[mini]:
+            mini = i
+            mine = ar[i]
+    return mine
+
+def hanyolcso():
+    ...
+
+    
 def main():
     iz,velemeny, ar= [], [], []
     beolvas(iz,velemeny,ar)
@@ -67,5 +97,11 @@ def main():
     print(f"legdrágább fagyink: {draga(ar,iz)}")
     # F3
     print(f"legolcsóbb fagyink: {olcso(iz,ar)}")
-    print(iz,velemeny,ar)
+    # F4
+    print(f"a fagyizó átlag véleménye:{round(atlag_rating(velemeny), 1)} ")
+    # F5
+    print(f"növekvő sorrendben a fagylaltjaink ára: {novekvo(ar,iz)}")
+    # F6
+    legolcsobb = intolcso(iz,ar)
+    hanyolcso(ar, iz, legolcsobb)
 main()
