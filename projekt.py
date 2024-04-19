@@ -48,15 +48,8 @@ def draga(ar,iz):
     for i in range(1,n):
         if ar[i] > ar[maxi]:
             maxi = i
-    return iz[i]
+    return iz[maxi]
         
-def olcso(iz,ar):
-    n = len(ar)
-    mini = 0 
-    for i in range(1,n):
-        if ar[i] < ar[mini]:
-            mini = i
-    return iz[i]
      
 def atlag_rating(velemeny):
     s = 0
@@ -84,7 +77,7 @@ def intolcso(iz,ar):
             mine = ar[i]
     return mine
 
-def hanyolcso():
+def hanyolcso(ar,iz,legolcsobb):
     ...
 
     
