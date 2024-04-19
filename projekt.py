@@ -77,24 +77,36 @@ def intolcso(iz,ar):
             mine = ar[i]
     return mine
 
-def hanyolcso(ar,iz,legolcsobb):
-    ...
+def olcsoklista(ar, iz, legolcsobb, olcsok):
+    n = len(iz)
+    i = 0
+    for i in range(n):
+        if legolcsobb == ar[i]:
+            olcsok.append(iz[i])
+    return olcsok        
+
+
 
     
 def main():
     iz,velemeny, ar= [], [], []
     beolvas(iz,velemeny,ar)
+    olcsok = []
+    print(ar)
     # F1
     print(f"ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
     # F2
     print(f"legdrágább fagyink: {draga(ar,iz)}")
     # F3
-    print(f"legolcsóbb fagyink: {olcso(iz,ar)}")
+    print(intolcso(iz, ar))
+    legolcsobb = intolcso(iz,ar)
+    olcsok = olcsoklista(ar, iz, legolcsobb, olcsok)
+    print("a legolcsóbb fagyik:", *olcsok)  
     # F4
     print(f"a fagyizó átlag véleménye:{round(atlag_rating(velemeny), 1)} ")
     # F5
-    print(f"növekvő sorrendben a fagylaltjaink ára: {novekvo(ar,iz)}")
+    novekvok = novekvo(ar,iz)
+    print("növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
     # F6
-    legolcsobb = intolcso(iz,ar)
-    hanyolcso(ar, iz, legolcsobb)
+   
 main()
