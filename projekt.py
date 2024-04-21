@@ -1,5 +1,4 @@
 
-
 def sima(iz,velemeny,ar):
     fr = open("be1.txt", "r", encoding ="UTF=8")
     sor = fr.readline().strip()
@@ -25,22 +24,29 @@ def mentes(iz,velemeny,ar):
     
     
 def beolvas(iz,velemeny,ar):
-    k = input("Melyik fájl(sima/laktózmentes): ")
+    k = input("Melyik fájl?(sima/laktózmentes): ")
     if k == "sima":
         sima(iz,velemeny,ar)
     elif k == "laktózmentes":
         mentes(iz,velemeny,ar)
     else:
-        k = input("Melyik fájl(sima/laktózmentes):") 
+       beolvas(iz,velemeny,ar)
 
 def otrating(velemeny):
     ossz = 0
     n = len(velemeny)
     for i in range(n):
-        if velemeny[i] >= 4.5:
+        if velemeny[i] > 4.5:
             ossz += 1
     return ossz
-        
+
+def otratingfagyik(iz, velemeny, otratinglist):
+    n = len(velemeny)
+    for i in range(n):
+        if velemeny[i] > 4.5:
+            otratinglist.append(iz[i])
+    return otratinglist        
+  
 
 def draga(ar,iz):
     n = len(ar)
@@ -77,36 +83,42 @@ def intolcso(iz,ar):
             mine = ar[i]
     return mine
 
-def olcsoklista(ar, iz, legolcsobb, olcsok):
+def olcsoklista(ar, iz, legolcsobb, olcsofagyik):
     n = len(iz)
     i = 0
     for i in range(n):
         if legolcsobb == ar[i]:
-            olcsok.append(iz[i])
-    return olcsok        
-
-
-
+            olcsofagyik.append(iz[i])
+    return olcsofagyik
+      
+def kitxt(novekvok):
+    fw = open("ki.txt", "w", encoding="UTF-8")
+    for i in range(len(novekvok)):
+        fw.write(f"{novekvok[i]}\n")
+    fw.close()
     
 def main():
     iz,velemeny, ar= [], [], []
     beolvas(iz,velemeny,ar)
-    olcsok = []
-    print(ar)
+    olcsofagyik = []
+    otratinglist = []
     # F1
-    print(f"ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
+    print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
     # F2
-    print(f"legdrágább fagyink: {draga(ar,iz)}")
+    otratingfagyi = otratingfagyik(iz, velemeny, otratinglist)
+    print(f"2.) 4,5 csillag fölötti fagylaltjaink:", *otratingfagyi)
     # F3
-    print(intolcso(iz, ar))
-    legolcsobb = intolcso(iz,ar)
-    olcsok = olcsoklista(ar, iz, legolcsobb, olcsok)
-    print("a legolcsóbb fagyik:", *olcsok)  
+    print("3.) A legdrágább fagyink:", draga(ar,iz))
     # F4
-    print(f"a fagyizó átlag véleménye:{round(atlag_rating(velemeny), 1)} ")
+    legolcsobb = intolcso(iz,ar)
+    olcsofagyik = olcsoklista(ar, iz, legolcsobb, olcsofagyik)
+    print("4.)A legolcsóbb fagylaltjaink:", *olcsofagyik)  
     # F5
-    novekvok = novekvo(ar,iz)
-    print("növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
+    print(f"5.) A fagyizó átlag véleménye: {round(atlag_rating(velemeny), 1)} ")
     # F6
+    novekvok = novekvo(ar,iz)
+    print("6.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
+    # Kiiras
+    kitxt(novekvok)
    
 main()
