@@ -91,17 +91,29 @@ def olcsoklista(ar, iz, legolcsobb, olcsofagyik):
             olcsofagyik.append(iz[i])
     return olcsofagyik
       
-def kitxt(novekvok):
-    fw = open("ki.txt", "w", encoding="UTF-8")
-    for i in range(len(novekvok)):
-        fw.write(f"{novekvok[i]}\n")
-    fw.close()
+# def kitxt(novekvok):
+#     fw = open("ki.txt", "w", encoding="UTF-8")
+#     for i in range(len(novekvok)):
+#         fw.write(f"{novekvok[i]}\n")
+#     fw.close()
     
-def main():
-    iz,velemeny, ar= [], [], []
-    beolvas(iz,velemeny,ar)
-    olcsofagyik = []
-    otratinglist = []
+def iras_olvas():
+    n = input("Mit szeretne a fájllal (statisztika/adatrögzítés): ")
+    if n == "statisztika":
+        return n 
+    elif n == "adatrögzítés":
+        return n 
+    else:
+        iras_olvas()
+
+
+def hozzairas():
+    fa = open("ki.txt", "a", encoding = "UTF=8")
+    fa.write("lefutott a program")
+    fa.close()
+
+
+def statisztika(iz,velemeny, ar, olcsofagyik,otratinglist):
     # F1
     print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
     # F2
@@ -118,7 +130,19 @@ def main():
     # F6
     novekvok = novekvo(ar,iz)
     print("6.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
-    # Kiiras
-    kitxt(novekvok)
+        
+
+
+def main():
+    iz,velemeny, ar= [], [], []
+    beolvas(iz,velemeny,ar)
+    kerdes = iras_olvas()
+    olcsofagyik = []
+    otratinglist = []
+    if kerdes == "statisztika":
+        statisztika(iz,velemeny, ar, olcsofagyik,otratinglist)
+    else:
+        hozzairas()
+        
    
 main()
