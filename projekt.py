@@ -77,20 +77,19 @@ def novekvo(ar,iz):
 def intolcso(iz,ar):
     n = len(ar)
     mini = 0
-    mine = 0 
-    for i in range(1,n):
+    for i in range(1, n):
         if ar[i] < ar[mini]:
-            mini = i
-            mine = ar[i]
-    return mine
+            mini = i  
+    return ar[mini]
+
 
 def olcsoklista(ar, iz, legolcsobb, olcsofagyik):
-    n = len(iz)
+    n = len(ar)
     for i in range(n):
         if legolcsobb == ar[i]:
             olcsofagyik.append(iz[i])
     return olcsofagyik
-      
+
     
 def iras_olvas():
     n = input("Mit szeretne a fájllal (statisztika/adatrögzítés): ")
@@ -115,11 +114,10 @@ def hozzairas():
 
 def akcio(legolcsobb):
     r = randint(10, 30)
-    n = legolcsobb - (r / 100 * legolcsobb)
-    return n
+    akciosar = int(legolcsobb - (r / 100 * legolcsobb))
+    return akciosar
 
-def statisztika(iz,velemeny, ar, olcsofagyik,otratinglist):
-    
+def statisztika(iz,velemeny, ar, olcsofagyik, otratinglist):
     # F1
     print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
     # F2
@@ -128,19 +126,18 @@ def statisztika(iz,velemeny, ar, olcsofagyik,otratinglist):
     # F3
     print("3.) A legdrágább fagyink:", draga(ar,iz))
     # F4
-    novekvok = novekvo(ar,iz)
-    print("4.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
+    print(f"4.) A fagyizó átlag véleménye: {round(atlag_rating(velemeny), 1)} ")
     # F5
-    print(f"5.) A fagyizó átlag véleménye: {round(atlag_rating(velemeny), 1)} ")
-    # F6
     legolcsobb = intolcso(iz,ar)
     olcsofagyik = olcsoklista(ar, iz, legolcsobb, olcsofagyik)
-    print("6.)A legolcsóbb fagylaltjaink:", *olcsofagyik)  
-    print(intolcso(iz, ar))
+    print("5.) A legolcsóbb fagylaltjaink:", *olcsofagyik)  
+    # F6
+    print("6.) Mai akciónkkal a legolcsóbb fagylaltjaink/fagylaltunk ára:", akcio(legolcsobb))
     #F7
-    print("7.) Mai akciónkkal a legolcsóbb fagylaltjaink ára: ", akcio(legolcsobb))
-    
-    
+    novekvok = novekvo(ar,iz)
+    print("7.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
+    #proba
+   
         
 
 
