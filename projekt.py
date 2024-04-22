@@ -103,8 +103,10 @@ def iras_olvas():
 
 
 def mitakarsz():
-    n = input("Vendégkönyv(írjon bármit): ")
+    n = input("Vendégkönyv (írjon bármit):")
     return n
+
+
 def hozzairas():
     fa = open("ki.txt", "a", encoding = "UTF=8")
     fa.write(f"{mitakarsz()} \n",)
