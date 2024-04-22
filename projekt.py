@@ -1,3 +1,4 @@
+from random import randint
 
 def sima(iz,velemeny,ar):
     fr = open("be1.txt", "r", encoding ="UTF=8")
@@ -85,7 +86,6 @@ def intolcso(iz,ar):
 
 def olcsoklista(ar, iz, legolcsobb, olcsofagyik):
     n = len(iz)
-    i = 0
     for i in range(n):
         if legolcsobb == ar[i]:
             olcsofagyik.append(iz[i])
@@ -113,8 +113,13 @@ def hozzairas():
     print("Véleményét rögzítettük!")
     fa.close()
 
+def akcio(legolcsobb):
+    r = randint(10, 30)
+    n = legolcsobb - (r / 100 * legolcsobb)
+    return n
 
 def statisztika(iz,velemeny, ar, olcsofagyik,otratinglist):
+    
     # F1
     print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
     # F2
@@ -123,14 +128,18 @@ def statisztika(iz,velemeny, ar, olcsofagyik,otratinglist):
     # F3
     print("3.) A legdrágább fagyink:", draga(ar,iz))
     # F4
-    legolcsobb = intolcso(iz,ar)
-    olcsofagyik = olcsoklista(ar, iz, legolcsobb, olcsofagyik)
-    print("4.)A legolcsóbb fagylaltjaink:", *olcsofagyik)  
+    novekvok = novekvo(ar,iz)
+    print("4.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
     # F5
     print(f"5.) A fagyizó átlag véleménye: {round(atlag_rating(velemeny), 1)} ")
     # F6
-    novekvok = novekvo(ar,iz)
-    print("6.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
+    legolcsobb = intolcso(iz,ar)
+    olcsofagyik = olcsoklista(ar, iz, legolcsobb, olcsofagyik)
+    print("6.)A legolcsóbb fagylaltjaink:", *olcsofagyik)  
+    print(intolcso(iz, ar))
+    #F7
+    print("7.) Mai akciónkkal a legolcsóbb fagylaltjaink ára: ", akcio(legolcsobb))
+    
     
         
 
