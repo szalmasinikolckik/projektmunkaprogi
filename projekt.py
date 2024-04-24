@@ -93,22 +93,20 @@ def olcsoklista(ar, iz, legolcsobb, olcsofagyik):
     
 def iras_olvas():
     n = input("Mit szeretne a fájllal (statisztika/adatrögzítés): ")
-    if n == "statisztika":
-        return n 
-    elif n == "adatrögzítés":
-        return n 
+    if n == "statisztika" or n == "adatrögzítés":
+       return n
     else:
-        iras_olvas()
-
+        return iras_olvas()
+          
 
 def mitakarsz():
-    n = input("Vendégkönyv (írjon bármit):")
+    n = input("Vendégkönyv (írjon bármit): ")
     return n
 
 
 def hozzairas():
     fa = open("ki.txt", "a", encoding = "UTF=8")
-    fa.write(f"{mitakarsz()} \n",)
+    fa.write(f"{mitakarsz()} \n")
     print("Véleményét rögzítettük!")
     fa.close()
 
@@ -118,6 +116,7 @@ def akcio(legolcsobb):
     return akciosar
 
 def statisztika(iz,velemeny, ar, olcsofagyik, otratinglist):
+    print("Bim-Bam Fagyizó információk:")
     # F1
     print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
     # F2
@@ -136,10 +135,8 @@ def statisztika(iz,velemeny, ar, olcsofagyik, otratinglist):
     #F7
     novekvok = novekvo(ar,iz)
     print("7.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
-    #proba
    
         
-
 
 def main():
     iz,velemeny, ar= [], [], []
