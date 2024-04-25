@@ -66,7 +66,7 @@ def atlag_rating(velemeny):
     atlag = s / n
     return atlag
     
-def novekvo(ar,iz):
+def novekvo(ar):
     n = len(ar)
     for i in range(n):
         for j in range(n-1-i):
@@ -115,7 +115,13 @@ def akcio(legolcsobb):
     akciosar = int(legolcsobb - (r / 100 * legolcsobb))
     return akciosar
 
+def nyil(novekvok):
+    for i in range(len(novekvok)-1):
+        print(novekvok[i], "=>", end=(" "))
+    print(novekvok[len(novekvok)-1])
+
 def statisztika(iz,velemeny, ar, olcsofagyik, otratinglist):
+    print()
     print("Bim-Bam Fagyizó információk:")
     # F1
     print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
@@ -133,9 +139,12 @@ def statisztika(iz,velemeny, ar, olcsofagyik, otratinglist):
     # F6
     print("6.) Mai akciónkkal a legolcsóbb fagylaltjaink/fagylaltunk ára:", akcio(legolcsobb))
     #F7
-    novekvok = novekvo(ar,iz)
-    print("7.) Növekvő sorrendben a fagylaltjaink ára:", *novekvok, sep = " => ")
-   
+    novekvok = novekvo(ar)
+    print("7.) Fagylaltjaink ára növekvő sorrendben: ", end=(" "))
+    nyil(novekvok)
+    
+    
+        
         
 
 def main():

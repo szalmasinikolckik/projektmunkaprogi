@@ -14,9 +14,9 @@ Kókusz 1.9  720
 Ananász 3.3  1800 
 Kávé 2.4  950 
 Meggy 4.5  2400 
-Füge 1.6  630 
-Datolya 3.2  1600 
-Soproni 2.7  1100 
+Füge 4.6  630 
+Datolya 5.0  1600 
+Soproni 3.9  1100 
 Szilva 4.1  1900 
 Mangó 1.8  700 
 Gránátalma 3.6  2000 
