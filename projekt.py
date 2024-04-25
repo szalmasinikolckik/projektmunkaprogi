@@ -33,7 +33,7 @@ def beolvas(iz,velemeny,ar):
     else:
        beolvas(iz,velemeny,ar)
 
-def otrating(velemeny):
+def finomfagyik(velemeny):
     ossz = 0
     n = len(velemeny)
     for i in range(n):
@@ -41,7 +41,7 @@ def otrating(velemeny):
             ossz += 1
     return ossz
 
-def otratingfagyik(iz, velemeny, otratinglist):
+def finomfagyik_list(iz, velemeny, otratinglist):
     n = len(velemeny)
     for i in range(n):
         if velemeny[i] > 4.5:
@@ -124,9 +124,9 @@ def statisztika(iz,velemeny, ar, olcsofagyik, otratinglist):
     print()
     print("Bim-Bam Fagyizó információk:")
     # F1
-    print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {otrating(velemeny)}")
+    print(f"1.) Ennyi 4,5 csillag fölötti fagyi közül választhat: {finomfagyik(velemeny)}")
     # F2
-    otratingfagyi = otratingfagyik(iz, velemeny, otratinglist)
+    otratingfagyi = finomfagyik_list(iz, velemeny, otratinglist)
     print(f"2.) 4,5 csillag fölötti fagylaltjaink:", *otratingfagyi)
     # F3
     print("3.) A legdrágább fagyink:", draga(ar,iz))
